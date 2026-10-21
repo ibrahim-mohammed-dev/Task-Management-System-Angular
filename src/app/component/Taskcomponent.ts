@@ -1,5 +1,4 @@
 import { Component, inject, signal } from "@angular/core";
-import { LoginService } from "../service/LoginService";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { catchError, of } from "rxjs";
 import { RestResponsePage } from "../dto/ResetResponsePage";
@@ -7,30 +6,21 @@ import { TaskResponseDto } from "../dto/TaskResponseDto";
 import { TaskService } from "../service/TaskService";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TaskRequestDto } from "../dto/TaskRequestDto";
+import { TaskFormComponent } from "../shared/TaskFormComponent";
 
 @Component({
     selector: 'app-task-list',
-    imports:[],
+    imports: [TaskFormComponent],
     template: `
-    @for (task of tasks().content; track task.id) {
-        {{task.title}}
-        {{task.description}}
-        {{task.completed}}
-    }
+    <app-task-form (formSubmit)="onsubmit($event)" />
     `,
 })
 export class TaskComponent {
-  private taskService = inject(TaskService);
-  private fb = inject(FormBuilder);
-  taskForm: FormGroup = this.fb.group({
-    title: ['' ,Validators.required],
-    description: ['']
-  }) 
+  private taskService = inject(TaskService); 
   private addedTask?: TaskResponseDto;
   errorMessage= signal<string>('');
-  onsubmit(){
-    if(this.taskForm.invalid){ return ;}
-    this.taskService.addTask(this.taskForm.getRawValue()).subscribe({
+  onsubmit(task: TaskRequestDto){
+    this.taskService.addTask(task).subscribe({
       next: (data) => {
         this.addedTask = data;
         console.log("new task added =", data);
