@@ -27,4 +27,10 @@ export class TaskService{
     getTaskById(id:number):Observable<TaskResponseDto>{
         return this.http.get<TaskResponseDto>(`${this.link}/api/tasks/${id}`)
     }
+    updateTask(id:number , updatedTask: TaskRequestDto): Observable<TaskResponseDto>{
+        return this.http.put<TaskResponseDto>(`${this.link}/api/tasks/${id}` , updatedTask); 
+    }
+    deleteTask(id:number): Observable<any>{
+        return this.http.delete(`${this.link}/api/tasks/${id}`);
+    }
 } 

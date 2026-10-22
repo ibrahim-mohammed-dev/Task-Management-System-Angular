@@ -6,20 +6,27 @@ import { rxResource } from "@angular/core/rxjs-interop";
     selector: 'app-one-task',
     imports: [RouterLink],
     template: `
-    @if(taskResource.isLoading()){
-    <p>waiting</p>
-    }@else if (taskResource.error(); as err) {
-        <p>there is no task with id: {{taskid}}</p>
-    }
-     @else if (taskResource.value(); as task) {
-        
-    {{task.id}}
-    {{task.title}}
-    {{task.description}}
-    {{task.completed}}
-    }
-    <button routerLink="tasks">Back to tasks</button>
-    `
+    <div class="task-detail-container">
+        @if (taskResource.isLoading()) {
+            <div class="state-message">Loading task details...</div>
+        } @else if (taskResource.error(); as err) {
+            <div class="state-message error">There is no task with ID: {{ taskid }}</div>
+        } @else if (taskResource.value(); as task) {
+            <div class="task-card-detail">
+            <span class="task-id">ID: {{ task.id }}</span>
+            <h2>{{ task.title }}</h2>
+            <p class="task-desc">{{ task.description }}</p>
+            <div class="task-status" [class.completed]="task.completed">
+                Status: {{ task.completed ? 'Completed' : 'Pending' }}
+            </div>
+            </div>
+        }
+        <div class="back-action">
+            <button routerLink="/tasks" class="btn-secondary">Back to tasks</button>
+        </div>
+    </div>
+    `,
+    styleUrl: '../componentstyles/SingleTaskPage.css'
 })
 export class SingleTaskPage{
     private taskService = inject(TaskService);

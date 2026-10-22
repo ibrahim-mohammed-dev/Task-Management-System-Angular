@@ -1,0 +1,26 @@
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-logout:hover {
+  background-color: #b91c1c;
+}
+
+.btn-logout:active {
+  transform: scale(0.98);
+}
+
+.btn-logout .icon {
+  font-size: 1.1rem;
+}
