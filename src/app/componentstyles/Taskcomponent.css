@@ -51,6 +51,20 @@
   color: #64748b;
   font-size: 0.95rem;
 }
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .task-actions {
   display: flex;
   gap: 0.75rem;
@@ -72,6 +86,34 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+}
+.completed-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #475569;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+.btn-completed {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  accent-color: #2563eb; 
+}
+
+.task-card.completed {
+  background-color: #f8fafc;
+  border-left: 4px solid #22c55e;
+}
+
+.task-card.completed .task-info h3,
+.task-card.completed .task-info p {
+  text-decoration: line-through;
+  color: #94a3b8;
 }
 .no-tasks {
   text-align: center;

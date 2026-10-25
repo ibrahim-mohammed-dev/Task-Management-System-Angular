@@ -53,7 +53,9 @@ function handle401Error(
 
     if (!storedRefreshToken) {
       isRefreshing = false;
-      localStorage.clear();
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('tokenType');
       router.navigate(['/login']);
       return throwError(() => new Error('No refresh token available'));
     }
