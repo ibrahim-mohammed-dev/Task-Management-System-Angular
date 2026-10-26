@@ -36,4 +36,7 @@ export class GroupService{
             .set('sortDir', sortDir)
         return this.http.get<RestResponsePage<GroupResponseDto>>(`${this.link}/groups` , {params});
     }
+    deleteGroup(groupId:number):Observable<any>{
+        return this.http.delete(`${this.link}/${groupId}`);
+    }
 }

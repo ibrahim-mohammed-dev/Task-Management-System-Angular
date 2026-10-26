@@ -3,6 +3,7 @@ import { LoginComponent } from './component/loginComponent';
 import { TaskComponent } from './component/Taskcomponent';
 import { RegisterComponenet } from './component/RegisterComponent';
 import { SingleTaskPage } from './component/SingleTaskPage';
+import { GroupPageComponent } from './featuers/groupPage/GroupPageComponent';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,10 @@ export const routes: Routes = [
     {
         path: 'task/:id',
         component: SingleTaskPage,
+    },
+    {
+        path: 'groups',
+        component: GroupPageComponent,
     }
+
 ];

@@ -24,4 +24,7 @@ export class PermissionService{
             .set('sortDir', sortDir)
         return this.http.get<RestResponsePage<PermissionResponseDto>>(`${this.link}/permissions` , {params});
     }
+    deletePermission(PermissionId:number):Observable<any>{
+        return this.http.delete(`${this.link}/${PermissionId}`);
+    }
 }

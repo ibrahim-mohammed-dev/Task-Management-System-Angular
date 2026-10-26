@@ -1,6 +1,2 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<app-entity-selector mode="users-list" (itemSelected)="selectUser($event)"></app-entity-selector>
-<app-entity-selector mode="permissions-list"></app-entity-selector>
-<app-entity-selector mode="groups-list"></app-entity-selector>
-<h1>{{ user()?.username || user()?.email || 'No user selected' }}</h1>

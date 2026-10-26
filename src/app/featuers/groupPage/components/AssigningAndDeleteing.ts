@@ -6,10 +6,56 @@ type ActionType = 'assign-user' | 'assign-permission' | 'delete-user' | 'delete-
 @Component({
     selector: 'app-assign-delete',
     template: `
-        <button (click)="onSubmit()">
-            {{ buttonText() }}
-        </button>
-    `
+        <button 
+    type="button" 
+    [class]="mode().includes('delete') ? 'btn-danger' : 'btn-primary'" 
+    (click)="onSubmit()">
+    {{ buttonText() }}
+    </button>
+    `,
+    styles: [`
+    button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    }
+
+    /* تنسيق أزرار الإضافة (Assign) */
+    .btn-primary {
+    background-color: #4f46e5;
+    color: #ffffff;
+    }
+
+    .btn-primary:hover {
+    background-color: #4338ca;
+    }
+
+    .btn-primary:active {
+    background-color: #3730a3;
+    }
+
+    /* تنسيق أزرار الحذف (Delete) */
+    .btn-danger {
+    background-color: #fee2e2;
+    color: #dc2626;
+    }
+
+    .btn-danger:hover {
+    background-color: #fecaca;
+    }
+
+    .btn-danger:active {
+    background-color: #fca5a5;
+    }
+`]
 })
 export class AssignDeleteComponent {
     private groupService = inject(GroupService);
