@@ -37,28 +37,40 @@ export class AssignDeleteComponent {
         switch (this.mode()) {
             case 'assign-user':
                 this.groupService.assignUserToGroup(gId, tId).subscribe({
-                    next: res => console.log(`User with id ${tId} assigned successfully`, res),
+                    next: res => {
+                        console.log(`User with id ${tId} assigned successfully`, res);
+                        this.successMessage.emit(`User with id ${tId} has been assigned successfully!`);
+                    },
                     error: err => this.errorMessage.emit(err.error?.message || "Failed to assign user")
                 });
                 break;
 
             case 'assign-permission':
                 this.groupService.assignPermissionToGroup(gId, tId).subscribe({
-                    next: res => console.log(`Permission with id ${tId} assigned successfully`, res),
+                    next: res => {
+                        console.log(`Permission with id ${tId} assigned successfully`, res);
+                        this.successMessage.emit(`Permission with id ${tId} has been assigned successfully!`);
+                    },
                     error: err => this.errorMessage.emit(err.error?.message || "Failed to assign permission")
                 });
                 break;
 
             case 'delete-user':
                 this.groupService.deleteUserFromGroup(gId, tId).subscribe({
-                    next: res => console.log(`User with id ${tId} deleted successfully`, res),
+                    next: res => {
+                        console.log(`User with id ${tId} deleted successfully`, res);
+                        this.successMessage.emit(`User with id ${tId} has been deleted successfully!`);
+                    },
                     error: err => this.errorMessage.emit(err.error?.message || "Failed to delete user")
                 });
                 break;
 
             case 'delete-permission':
                 this.groupService.deletePermissionFromGroup(gId, tId).subscribe({
-                    next: res => console.log(`Permission with id ${tId} deleted successfully`, res),
+                    next: res => {
+                        console.log(`Permission with id ${tId} deleted successfully`, res);
+                        this.successMessage.emit(`Permission with id ${tId} has been deleted successfully!`);
+                    },
                     error: err => this.errorMessage.emit(err.error?.message || "Failed to delete permission")
                 });
                 break;

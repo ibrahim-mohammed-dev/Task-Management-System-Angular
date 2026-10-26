@@ -1,8 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { GroupRequestDto } from "../dto/GroupRequestDto";
 import { Observable } from "rxjs";
 import { GroupResponseDto } from "../dto/GroupResponseDto";
+import { RestResponsePage } from "../dto/ResetResponsePage";
 
 @Injectable({
     providedIn: 'root'
@@ -25,5 +26,14 @@ export class GroupService{
     }
     deletePermissionFromGroup(groupId: number, permissionId: number): Observable<any>{
         return this.http.delete(`${this.link}/${groupId}/users/${permissionId}`);
+    }
+    showAllGroups(page:number = 0 ,size:number= 10, sortBy: string = 'id',
+        sortDir:string= 'asc' ):Observable<RestResponsePage<GroupResponseDto>>{
+        const params = new HttpParams()
+            .set('page', page.toString())
+            .set('size', size.toString())
+            .set('sortBy', sortBy)
+            .set('sortDir', sortDir)
+        return this.http.get<RestResponsePage<GroupResponseDto>>(`${this.link}/groups` , {params});
     }
 }
