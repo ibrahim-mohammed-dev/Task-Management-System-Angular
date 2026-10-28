@@ -1,30 +1,36 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './component/loginComponent';
-import { TaskComponent } from './component/Taskcomponent';
-import { RegisterComponenet } from './component/RegisterComponent';
-import { SingleTaskPage } from './component/SingleTaskPage';
-import { GroupPageComponent } from './featuers/groupPage/GroupPageComponent';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: LoginComponent,
+        loadComponent: () =>
+            import('./component/loginComponent').then((m) => m.LoginComponent),
     },
     {
-        path: 'tasks',
-        component: TaskComponent,
+        path: 'mytasks',
+        loadComponent: () =>
+            import('./component/Taskcomponent').then((m) => m.TaskComponent),
+        
     },
     {
         path: 'register',
-        component: RegisterComponenet,
+        loadComponent: ()=> import('./component/RegisterComponent').then((m)=> m.RegisterComponenet),
     },
     {
         path: 'task/:id',
-        component: SingleTaskPage,
+        loadComponent: ()=> import('./component/SingleTaskPage').then((m)=>m.SingleTaskPage),
     },
     {
         path: 'groups',
-        component: GroupPageComponent,
-    }
+        loadComponent: ()=> import('./featuers/groupPage/GroupPageComponent').then((m)=>m.GroupPageComponent),
+    },
+    {
+        path:'alltasks',
+        loadComponent: ()=> import('./component/TasksComponent').then((m)=>m.TasksComponent),
+    },
+    {
+        path: 'allusers',
+        loadComponent: ()=> import('./component/UsersComponent').then((m)=>m.UsersManagementComponent),
+    },
 
 ];

@@ -24,4 +24,7 @@ export class AuthService{
     logout(): Observable<string> {
     return this.http.post(`${this.link}/api/auth/logout`, null, { responseType: 'text' });
     }
+    isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken');
+}
 }
